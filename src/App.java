@@ -34,6 +34,30 @@ public class App {
 
             System.out.println("Desordenado | Inserción | " + resInsercion.getSample() + " | " + resInsercion.getTiempoMilis() + " ms");
             System.out.println("Desordenado | QuickSort | " + resQuick.getSample() + " | " + resQuick.getTiempoMilis() + " ms");
+
+            System.out.println();
+            Persona[] baseOrdenada = base.clone();
+            sorter.insertionSort(baseOrdenada);
+            Persona[] personaAdicional = new Persona[c+1];
+            for(int i=0; i<c; i++){
+                personaAdicional[i] = baseOrdenada[i];
+            }
+            personaAdicional[c] = new Persona("Persona Nueva", (int)(Math.random() * 101));
+
+            Persona[] paraInsercion2 = personaAdicional.clone();
+            Persona[] paraQuick2 = personaAdicional.clone();
+
+            Resultado resInsercion2 = BenchMarking.medirTiempo(
+                () -> { sorter.insertionSort(paraInsercion2); return null; },
+                "Inserción", "Casi Ordenado", c+1
+            );
+            Resultado resQuick2 = BenchMarking.medirTiempo(
+                () -> { sorter.quickSort(paraQuick2, 0, paraQuick2.length - 1); return null; },
+                "QuickSort", "Casi Ordenado", c+1
+            );
+            System.out.println("Casi Ordenado | Inserción | " + resInsercion2.getSample() + " | " + resInsercion2.getTiempoMilis() + " ms");
+            System.out.println("Casi Ordenado | QuickSort | " + resQuick2.getSample() + " | " + resQuick2.getTiempoMilis() + " ms");
+            System.out.println();
     }
     
 }

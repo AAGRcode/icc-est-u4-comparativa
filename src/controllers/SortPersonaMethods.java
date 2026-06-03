@@ -19,7 +19,7 @@ public class SortPersonaMethods {
         if(inicio<fin){
             int indicePivote = particionar(personas, inicio, fin);
             quickSort(personas, inicio, indicePivote-1);
-            quickSort(personas, indicePivote, fin);
+            quickSort(personas, indicePivote+1, fin);
         }
     }
 
